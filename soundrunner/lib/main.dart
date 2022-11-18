@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Soundrunner'),
     );
   }
 }
@@ -42,7 +44,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -95,8 +96,43 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+              margin: const EdgeInsets.fromLTRB(50, 10, 50, 35),
+              child: const TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter your age',
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                RadioListTile(
+                  title: const Text("Moderate workout"),
+                  value: "moderate",
+                  groupValue: "test",
+                  onChanged: (value) {
+                    setState(() {
+                      var test = value.toString();
+                      log(test);
+                    });
+                  },
+                ),
+                RadioListTile(
+                  title: const Text("Heavy workout"),
+                  value: "heavy",
+                  groupValue: "test",
+                  onChanged: (value) {
+                    setState(() {
+                      var test = value.toString();
+                      log(test);
+                    });
+                  },
+                ),
+              ],
+            ),
             const Text(
-              'You have pushed the button this many times:',
+              'Amount of steps',
             ),
             Text(
               '$_counter',
